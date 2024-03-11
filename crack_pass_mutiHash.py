@@ -7,8 +7,8 @@ import pyperclip
 
 
 list_password = []
-
-
+file_check = False
+message = ""
 
 def type_list(menu):
     
@@ -54,6 +54,7 @@ def convert_text_to_sha512(text_password):
 
 def get_data_password():
     
+    global message
     file = input("Setup the list file password : ")
     try:
         #with open('rockyou.txt', encoding='utf-8') as f:
@@ -62,7 +63,13 @@ def get_data_password():
             for i in tqdm(f, desc="Loading...", ascii=False, ncols=100):
                 list_password.append(i.strip())
                 
+                
+            file_check = True
+            if file_check:
+                message = f"[+] Load data successfully....\n[+] Name file : {file}"
+                print(message)
     except Exception as e:
+        os.system('cls')
         print("[-] File not found or Wrong location source!!")
         print(f"[!] {e}\n")
         
@@ -89,7 +96,7 @@ def create_hash():
             
             if create == '1':
                pyperclip.copy(convert_text_to_md5(you_hash))
-               this_hash = pyperclip.paste()
+               this_hash = pyperclip.paste()-
                print("-------------------------------------------------------")
                print("[+] [Status] -- Generate Sucessfully -- ")
                print(f"[+] This HASH = {this_hash}")
@@ -258,10 +265,9 @@ def help_menu():
 
 if __name__ == '__main__':
     get_data_password() 
-    os.system('pause')
-    os.system('cls')
+    #mainmenu
     try:
-        
+            
         while True:
             print("\n|-- Welcome to Program HASH Convert!!! --|")
             print("           Dev by BabyH@ck V.4.2.7\n")
